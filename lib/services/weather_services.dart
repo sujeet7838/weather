@@ -11,6 +11,7 @@ class WeatherServices {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
+      print(response.body);
       return response.body;
     } else {
       throw Exception('Failed to load weather data');

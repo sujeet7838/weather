@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:weather/models/weather_model.dart';
 import 'package:weather/services/weather_services.dart';
+import 'package:weather/widgets/weather_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
       setState(() {
-        _weather = weather;
+        //  _weather = weather as Weather?;
         _isLoading = false;
       });
     } catch (e) {
@@ -106,16 +106,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 ElevatedButton(
                   onPressed: _getWeather,
-                  child: Text(
-                    'Get Weather',
-                    style: TextStyle(color: Colors.white),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey,
                     foregroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                  ),
+                  child: Text(
+                    'Get Weather',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
 
@@ -124,7 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(20),
                     child: CircularProgressIndicator(color: Colors.white),
                   ),
-                  if (_weather != null)
+
+                if (_weather != null) WeatherCard(weather: _weather!),
               ],
             ),
           ),

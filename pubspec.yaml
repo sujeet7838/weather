@@ -63,10 +63,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/cloudy.json
-    - assets/rain.json
-    - assets/snowfall.json
-    - assets/sunny.json
+  - assets/cloudy.json
+  - assets/rain.json
+  - assets/snowfall.json
+  - assets/sunny.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
