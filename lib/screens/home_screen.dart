@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:weather/models/weather_model.dart';
 import 'package:weather/services/weather_services.dart';
 import 'package:weather/widgets/weather_card.dart';
@@ -26,18 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
       final weather = await _weatherServices.featchWerther(
         _cityController.text,
       );
+      _weather = weather;
 
       setState(() {
-        //  _weather = weather as Weather?;
         _isLoading = false;
       });
     } catch (e) {
       setState(() {
         _isLoading = false;
       });
-
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to load weather data')),
+        const SnackBar(content: Text('Error fetching weather data')),
       );
     }
   }
@@ -90,16 +90,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   controller: _cityController,
                   decoration: InputDecoration(
                     hintText: 'Enter city name',
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                      color: const Color.fromARGB(255, 92, 91, 91),
+                    ),
+
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
                     fillColor: const Color.fromARGB(166, 255, 255, 255),
-                    prefixIcon: Icon(Icons.search, color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: const Color.fromARGB(255, 37, 37, 37),
+                    ),
                   ),
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
 
                 SizedBox(height: 20),

@@ -21,6 +21,15 @@ class WeatherCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 10,
+                spreadRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
 
           child: Column(
@@ -31,11 +40,12 @@ class WeatherCard extends StatelessWidget {
                     ? 'assets/rain.json'
                     : weather.description.contains('clear')
                     ? 'assets/sunny.json'
-                    : 'assets/snow.json',
+                    : weather.description.contains('cloudy')
+                    ? 'assets/cloudy.json'
+                    : 'assets/cloudy.json',
                 height: 150,
                 width: 150,
               ),
-
               Text(
                 weather.cityName,
                 style: Theme.of(context).textTheme.headlineSmall,
@@ -44,9 +54,9 @@ class WeatherCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 '${weather.temperature.toStringAsFixed(1)}°C',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               Text(
@@ -73,7 +83,7 @@ class WeatherCard extends StatelessWidget {
               const SizedBox(height: 20),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
